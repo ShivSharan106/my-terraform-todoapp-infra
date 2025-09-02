@@ -1,0 +1,11 @@
+name: "my_first-action_pipline"
+
+on: workflow_dispatch
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  terraform-init-plan:
+    runs-on: ubuntu-latest
+    
+   
