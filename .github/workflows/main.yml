@@ -21,4 +21,4 @@ jobs:
         id: fmt
         run: terraform fmt -check
         continue-on-error: true
-        working-directory: environments/dev
+        working-directory: environment/dev
