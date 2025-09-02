@@ -10,5 +10,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5.0.0
-        
-   
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: ed09c0c0-6e0e-49ea-a0de-4264ec9a87ac
+          tenant-id: 616c4396-4431-416b-bbae-1077a215e05d
+          subscription-id: 75330da7-9d4b-4fbe-bb6f-8c4125ece9a6
+    
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+        working-directory: environments/dev
