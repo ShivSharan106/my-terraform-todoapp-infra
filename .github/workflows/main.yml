@@ -13,7 +13,7 @@ jobs:
       - name: Azure Login
         uses: Azure/login@v2.3.0
         with:
-          client-id: ed09c0c0-6e0e-49ea-a0de-4264ec9a87ac
+          client-id: 530731df-b7c7-4dd0-b17d-8d4bb285ef31
           tenant-id: 616c4396-4431-416b-bbae-1077a215e05d
           subscription-id: 75330da7-9d4b-4fbe-bb6f-8c4125ece9a6
       - name: Install Terraform
@@ -52,7 +52,7 @@ jobs:
         - name: Azure Login
           uses: Azure/login@v2.3.0
           with:
-            client-id: ed09c0c0-6e0e-49ea-a0de-4264ec9a87ac
+            client-id: 530731df-b7c7-4dd0-b17d-8d4bb285ef31
             tenant-id: 616c4396-4431-416b-bbae-1077a215e05d
             subscription-id: 75330da7-9d4b-4fbe-bb6f-8c4125ece9a6   
     
