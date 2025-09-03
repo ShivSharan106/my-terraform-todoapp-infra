@@ -7,46 +7,46 @@ permissions:
 jobs:
   job1:
     runs-on: self-hosted
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v5.0.0
-        - name: Azure Login
-          uses: Azure/login@v2.3.0
-          with:
-            client-id: ed09c0c0-6e0e-49ea-a0de-4264ec9a87ac
-            tenant-id: 616c4396-4431-416b-bbae-1077a215e05d
-            subscription-id: 75330da7-9d4b-4fbe-bb6f-8c4125ece9a6
-        - name: Install Terraform
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y unzip curl
-            curl -O https://releases.hashicorp.com/terraform/1.8.5/terraform_1.8.5_linux_amd64.zip
-            unzip terraform_1.8.5_linux_amd64.zip
-            sudo mv terraform /usr/local/bin/
-            terraform -version
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: ed09c0c0-6e0e-49ea-a0de-4264ec9a87ac
+          tenant-id: 616c4396-4431-416b-bbae-1077a215e05d
+          subscription-id: 75330da7-9d4b-4fbe-bb6f-8c4125ece9a6
+      - name: Install Terraform
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip curl
+          curl -O https://releases.hashicorp.com/terraform/1.8.5/terraform_1.8.5_linux_amd64.zip
+          unzip terraform_1.8.5_linux_amd64.zip
+          sudo mv terraform /usr/local/bin/
+          terraform -version
           
-        - name: Terraform fmt
-          id: fmt
-          run: terraform fmt -check
-          continue-on-error: true
-          working-directory: environment/dev
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+        working-directory: environment/dev
 
-        - name: Terraform Init
-          id: init
-          run: terraform init -input=false
-          working-directory: environment/dev
+      - name: Terraform Init
+        id: init
+        run: terraform init -input=false
+        working-directory: environment/dev
         
-        - name: Terraform Plan
-          
-          run: terraform plan -no-color -input=false
-          continue-on-error: true
-          working-directory: environment/dev
+      - name: Terraform Plan
+        id: plan  
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+        working-directory: environment/dev
   job2:
     needs: job1
     if: ${{ needs.job1.result == 'success' }}  
     runs-on: self-hosted
     environment: dev
-      steps:
+    steps:
         - name: Checkout
           uses: actions/checkout@v5.0.0
         - name: Azure Login
