@@ -6,5 +6,5 @@ resource "azurerm_storage_account" "example" {
   account_tier             = "Standard"
   account_replication_type = "GRS"
 
-  tags = each.value.sa_tgs
+  tags = each.value.sa_tags
 }
