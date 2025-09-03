@@ -55,7 +55,12 @@ jobs:
             client-id: 530731df-b7c7-4dd0-b17d-8d4bb285ef31
             tenant-id: 616c4396-4431-416b-bbae-1077a215e05d
             subscription-id: 75330da7-9d4b-4fbe-bb6f-8c4125ece9a6   
-    
+            
+        - name: Terraform Apply
+          id: init
+          run: terraform init -input=false
+          working-directory: environment/dev   
+          
         - name: Terraform Apply
           id: apply
           run: terraform apply -auto-approve
